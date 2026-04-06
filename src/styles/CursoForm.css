@@ -1,0 +1,244 @@
+.curso-form {
+  padding: 32px;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  width: 100%;
+  max-width: 480px;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.curso-form h3 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.curso-form h3::before {
+  content: "";
+  font-size: 28px;
+}
+
+.curso-form-subtitle {
+  margin: 0 0 28px 0;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group > div {
+  position: relative;
+}
+
+.curso-form input {
+  width: 100%;
+  height: 52px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0 16px 0 48px;
+  color: #e2e8f0;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.curso-form input::placeholder {
+  color: #64748b;
+}
+
+.curso-form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Ícones nos inputs */
+.curso-form input + svg,
+.form-group > div > svg {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  transition: color 0.2s ease;
+  pointer-events: none;
+}
+
+.curso-form input:focus + svg,
+.form-group > div:focus-within > svg {
+  color: #3b82f6;
+}
+
+.curso-form input.error-input {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.curso-form input.error-input:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.curso-form input.error-input + svg,
+.form-group > div:has(.error-input) > svg {
+  color: #ef4444;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f87171;
+  font-size: 12px;
+  margin-top: 6px;
+  padding-left: 4px;
+  animation: shake 0.3s ease;
+}
+
+.error::before {
+  content: "";
+  font-size: 10px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.curso-form button[type="submit"] {
+  width: 100%;
+  height: 52px;
+  margin-top: 12px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.curso-form button[type="submit"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.curso-form button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.curso-form button[type="submit"]:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.curso-form button[type="submit"]:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.curso-form button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  box-shadow: none;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.modal-overlay .curso-form {
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  animation: none;
+  padding: 0;
+  max-width: 100%;
+}
+
+.curso-form-container {
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+}
+
+@media (max-width: 480px) {
+  .curso-form {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .curso-form h3 {
+    font-size: 20px;
+  }
+
+  .curso-form h3::before {
+    font-size: 24px;
+  }
+
+  .curso-form-subtitle {
+    font-size: 13px;
+  }
+
+  .curso-form input {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .curso-form button[type="submit"] {
+    height: 48px;
+    font-size: 14px;
+  }
+}

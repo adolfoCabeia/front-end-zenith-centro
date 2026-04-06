@@ -1,0 +1,206 @@
+:root {
+  --color-obsidian: #0f172a;
+  --color-slate: #1e293b;
+  --color-stone: #334155;
+  --color-fog: #64748b;
+  --color-mist: #94a3b8;
+  --color-cloud: #cbd5e1;
+  --color-porcelain: #f1f5f9;
+  --color-pure: #ffffff;
+
+  --zenith-blue: #3b82f6;
+  --zenith-blue-light: #60a5fa;
+  --zenith-blue-dark: #2563eb;
+  --zenith-accent: #0ea5e9;
+
+  --gradient-hero: linear-gradient(135deg, var(--color-obsidian) 0%, var(--color-slate) 100%);
+  --gradient-text: linear-gradient(135deg, var(--color-pure) 0%, var(--zenith-blue-light) 50%, var(--zenith-accent) 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.3) 0%, transparent 60%);
+
+  --glass-white: rgba(255, 255, 255, 0.03);
+  --glass-white-hover: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(59, 130, 246, 0.3);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.15);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}
+
+.dark {
+  --bg-primary: var(--color-obsidian);
+  --bg-secondary: var(--color-slate);
+  --text-primary: var(--color-pure);
+  --text-secondary: var(--color-mist);
+  --text-muted: var(--color-fog);
+  --accent-primary: var(--zenith-blue);
+  --accent-secondary: var(--zenith-blue-light);
+
+  --glass-bg: var(--glass-white);
+  --glass-border-color: var(--glass-border);
+  --grid-color: rgba(255, 255, 255, 0.03);
+
+  --btn-primary-bg: var(--color-pure);
+  --btn-primary-text: var(--color-obsidian);
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: var(--glass-border);
+  --btn-secondary-text: var(--color-pure);
+}
+
+
+.light {
+  --bg-primary: var(--color-pure);
+  --bg-secondary: var(--color-porcelain);
+  --text-primary: var(--color-obsidian);
+  --text-secondary: var(--color-stone);
+  --text-muted: var(--color-fog);
+  --accent-primary: var(--zenith-blue-dark);
+  --accent-secondary: var(--zenith-blue);
+
+  --glass-bg: rgba(15, 23, 42, 0.03);
+  --glass-border-color: rgba(15, 23, 42, 0.08);
+  --grid-color: rgba(15, 23, 42, 0.05);
+
+  --btn-primary-bg: var(--color-obsidian);
+  --btn-primary-text: var(--color-pure);
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: rgba(15, 23, 42, 0.15);
+  --btn-secondary-text: var(--color-obsidian);
+}
+
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.login-left {
+  flex: 1;
+  padding: 60px;
+  background: var(--gradient-hero);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-left h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.login-left h1 span {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-left p {
+  color: var(--text-secondary);
+  max-width: 400px;
+}
+
+.badge {
+  margin-bottom: 20px;
+  color: var(--accent-secondary);
+}
+
+.login-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form h2 {
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border-color);
+  background: var(--glass-bg);
+  color: var(--text-primary);
+}
+
+.form-group span {
+  color: #f87171;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-left {
+    display: none;
+  }
+}
