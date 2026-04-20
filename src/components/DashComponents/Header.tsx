@@ -20,8 +20,8 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/authStore";
 
 const Header = () => {
-  const [openUser, setOpenUser] = useState<boolean>(false);
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [openUser, setOpenUser] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const router = useRouter();
   const { user, logout } = useAuthStore();
@@ -44,18 +44,21 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Gera avatar a partir do nome do usuário logado
   const getAvatar = () => {
-    if (!user?.nome) return "??";
-    const nomes = user.nome.split(" ");
-    const primeiro = nomes[0][0] || "";
-    const ultimo = nomes[nomes.length - 1][0] || "";
+    if (!user?.nome || user.nome.trim() === "") return "??";
+    const nomes = user.nome.trim().split(/\s+/); 
+    const primeiro = nomes[0]?.[0] || "";
+    const ultimo = nomes.length > 1 ? nomes[nomes.length - 1]?.[0] || "" : "";
     return `${primeiro}${ultimo}`.toUpperCase();
   };
 
-  const handleLogout = () => {
-    logout();
-    router.push("/login");
+  const handleLogout = async () => {
+    try {
+      await logout();         
+      router.push("/login");
+    } catch (err) {
+      router.push("/login");
+    }
   };
 
   return (
@@ -110,7 +113,7 @@ const Header = () => {
 
       <div className="search">
         <input type="search" placeholder="Pesquisar..." />
-        <button>
+        <button aria-label="Pesquisar">
           <Search size={18} />
         </button>
       </div>
@@ -122,6 +125,7 @@ const Header = () => {
             setOpenUser(!openUser);
             setOpenMenu(false);
           }}
+          aria-label="Menu do usuário"
         >
           <div className="avatar">{getAvatar()}</div>
           <div className="user-text">
@@ -133,21 +137,30 @@ const Header = () => {
         {openUser && (
           <div className="dropdown user-dropdown">
             <div className="dropdown-header">
-              <p className="dropdown-user-name">{user?.nome}</p>
-              <p className="dropdown-user-email">{user?.email}</p>
+              <p className="dropdown-user-name">{user?.nome || "Usuário"}</p>
+              <p className="dropdown-user-email">{user?.email || ""}</p>
             </div>
             <div className="dropdown-divider"></div>
             <button
               className="dropdown-item"
-              onClick={() => router.push("/dashboard/perfil")}
+              onClick={() => {
+                setOpenUser(false);
+                router.push("/dashboard/perfil");
+              }}
             >
               <User size={16} /> Perfil
             </button>
-            <button className="dropdown-item">
+            <button className="dropdown-item" onClick={() => setOpenUser(false)}>
               <Settings size={16} /> Configurações
             </button>
             <div className="dropdown-divider"></div>
-            <button className="dropdown-item logout" onClick={handleLogout}>
+            <button
+              className="dropdown-item logout"
+              onClick={() => {
+                setOpenUser(false);
+                handleLogout();
+              }}
+            >
               <LogOut size={16} /> Logout
             </button>
           </div>

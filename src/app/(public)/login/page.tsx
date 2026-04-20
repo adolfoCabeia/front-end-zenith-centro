@@ -25,14 +25,14 @@ export default function LoginPage() {
     resolver: zodResolver(loginSchema),
   });
 
-  const setAuth = useAuthStore((s) => s.setAuth);
+  const setUser = useAuthStore((s) => s.setUser);
   const router = useRouter();
 
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await authService.login(data.email, data.senha);
 
-      setAuth(res.token, res.user);
+      setUser(res.user);
 
       toast.success("Login feito com sucesso!");
       router.push("/dashboard");

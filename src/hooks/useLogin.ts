@@ -1,3 +1,4 @@
+// src/hooks/useLogin.ts (ou useAuth.ts)
 "use client";
 
 import { useState } from "react";
@@ -9,18 +10,16 @@ import toast from "react-hot-toast";
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const setAuth = useAuthStore((s) => s.setAuth);
+  
+  const setUser = useAuthStore((s) => s.setUser); 
 
   const login = async (email: string, senha: string) => {
     setLoading(true);
-
     try {
-      const { user, token } = await authService.login(email, senha);
-      
-      setAuth(token, user);
+      const { user } = await authService.login(email, senha);
+      setUser(user); 
       toast.success(`Bem-vindo, ${user.nome}!`);
       router.push('/dashboard');
-      
       return { success: true };
     } catch (error: any) {
       const message = error.response?.data?.message || "Erro ao fazer login";

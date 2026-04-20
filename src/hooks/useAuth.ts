@@ -1,23 +1,22 @@
-
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { authService } from "@/services/auth.service";
-import { useAuthStore, User } from "@/store/authStore";
+import { useAuthStore } from "@/store/authStore";
 import toast from "react-hot-toast";
 
 export const useAuth = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   
-  const { setAuth, logout, updateUser } = useAuthStore();
+  const { setUser, logout: storeLogout, updateUser } = useAuthStore();
 
   const login = async (email: string, senha: string) => {
     setLoading(true);
     try {
-      const { user, token } = await authService.login(email, senha);
-      setAuth(token, user);
+      const { user } = await authService.login(email, senha); 
+      setUser(user); 
       toast.success(`Bem-vindo, ${user.nome}!`);
       router.push('/dashboard');
       return { success: true };
@@ -33,8 +32,8 @@ export const useAuth = () => {
   const register = async (nome: string, email: string, senha: string) => {
     setLoading(true);
     try {
-      const { user, token } = await authService.register(nome, email, senha);
-      setAuth(token, user);
+      const { user } = await authService.register(nome, email, senha);
+      setUser(user);
       toast.success("Conta criada com sucesso!");
       router.push('/dashboard');
       return { success: true };
@@ -42,6 +41,21 @@ export const useAuth = () => {
       const message = error.response?.data?.message || "Erro ao criar conta";
       toast.error(message);
       return { success: false, error: message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = async () => {
+    setLoading(true);
+    try {
+      await storeLogout(); 
+      toast.success("Logout realizado!");
+      router.push('/login');
+    } catch (error: any) {
+      const message = error.response?.data?.message || "Erro ao sair";
+      toast.error(message);
+      router.push('/login');
     } finally {
       setLoading(false);
     }

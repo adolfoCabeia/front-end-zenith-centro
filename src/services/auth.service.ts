@@ -1,17 +1,13 @@
-// services/auth.service.ts
 import { api } from "./api";
-import { User } from "@/store/authStore";
 
-interface LoginResponse {
-  message: string;
-  user: User;
-  token: string;
+interface User {
+  id: string;
+  nome: string;
+  email: string;
 }
-
-interface RegisterResponse {
+interface AuthResponse {
   message: string;
   user: User;
-  token: string;
 }
 
 interface UpdateProfileResponse {
@@ -25,13 +21,18 @@ interface UpdatePasswordData {
 }
 
 export const authService = {
-  login: async (email: string, senha: string): Promise<LoginResponse> => {
+  login: async (email: string, senha: string): Promise<AuthResponse> => {
     const res = await api.post('/auth/login', { email, senha });
+    return res.data; 
+  },
+
+  register: async (nome: string, email: string, senha: string): Promise<AuthResponse> => {
+    const res = await api.post('/auth/register', { nome, email, senha });
     return res.data;
   },
 
-  register: async (nome: string, email: string, senha: string): Promise<RegisterResponse> => {
-    const res = await api.post('/auth/register', { nome, email, senha });
+  logout: async (): Promise<{ message: string }> => {
+    const res = await api.post('/auth/logout');
     return res.data;
   },
 

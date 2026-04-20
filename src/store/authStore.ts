@@ -1,7 +1,6 @@
-"use client";
-
+// store/authStore.ts
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { authService } from "@/services/auth.service";
 
 export interface User {
   id: string;
@@ -12,53 +11,74 @@ export interface User {
 }
 
 interface AuthState {
-  token: string | null;
   user: User | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
 
-  setAuth: (token: string, user: User) => void;
-  logout: () => void;
-  updateUser: (user: Partial<User>) => void;
+  setUser: (user: User) => void;
+  updateUser: (user: User) => void;
+  clearAuth: () => void;
+  logout: () => Promise<void>;
+  fetchProfile: () => Promise<void>;
+  login: (email: string, senha: string) => Promise<void>;
+  register: (nome: string, email: string, senha: string) => Promise<void>;
 }
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      token: null,
-      user: null,
-      isAuthenticated: false,
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  isAuthenticated: false,
+  isLoading: false,
 
-      setAuth: (token, user) => {
-        localStorage.setItem("token", token);
-        set({
-          token,
-          user,
-          isAuthenticated: true,
-        });
-      },
+  // Define usuário e marca como autenticado
+  setUser: (user) => set({ user, isAuthenticated: true, isLoading: false }),
 
-      logout: () => {
-        localStorage.removeItem("token");
-        set({
-          token: null,
-          user: null,
-          isAuthenticated: false,
-        });
-      },
+  // Atualiza dados do usuário (mantém autenticação)
+  updateUser: (user) => set((state) => ({
+    user: state.user ? { ...state.user, ...user } : user,
+    isAuthenticated: true,
+    isLoading: false,
+  })),
 
-      updateUser: (userData) => {
-        set((state) => ({
-          user: state.user ? { ...state.user, ...userData } : null,
-        }));
-      },
-    }),
-    {
-      name: "auth-storage",
-      partialize: (state) => ({ 
-        token: state.token, 
-        user: state.user,
-        isAuthenticated: state.isAuthenticated 
-      }),
+  clearAuth: () => set({ user: null, isAuthenticated: false, isLoading: false }),
+
+  login: async (email, senha) => {
+    set({ isLoading: true });
+    try {
+      const { user } = await authService.login(email, senha);
+      set({ user, isAuthenticated: true, isLoading: false });
+    } catch (error) {
+      set({ user: null, isAuthenticated: false, isLoading: false });
+      throw error;
     }
-  )
-);
+  },
+
+  register: async (nome, email, senha) => {
+    set({ isLoading: true });
+    try {
+      const { user } = await authService.register(nome, email, senha);
+      set({ user, isAuthenticated: true, isLoading: false });
+    } catch (error) {
+      set({ user: null, isAuthenticated: false, isLoading: false });
+      throw error;
+    }
+  },
+
+  logout: async () => {
+    set({ isLoading: true });
+    try {
+      await authService.logout();
+    } finally {
+      set({ user: null, isAuthenticated: false, isLoading: false });
+    }
+  },
+
+  fetchProfile: async () => {
+    set({ isLoading: true });
+    try {
+      const { user } = await authService.getProfile();
+      set({ user, isAuthenticated: true, isLoading: false });
+    } catch {
+      set({ user: null, isAuthenticated: false, isLoading: false });
+    }
+  },
+}));
