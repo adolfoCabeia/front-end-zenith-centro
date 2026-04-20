@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Header from "@/components/DashComponents/Header";
 import { useAuthStore } from "@/store/authStore";
@@ -13,36 +13,24 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const fetchProfile = useAuthStore((s) => s.fetchProfile);
-  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
-  const [isChecking, setIsChecking] = useState(true);
+  const { fetchProfile, isAuthenticated, isLoading, hasChecked } = useAuthStore();
+
+  const checkAuth = useCallback(async () => {
+    await fetchProfile();
+  }, [fetchProfile]);
 
   useEffect(() => {
-    let mounted = true;
-
-    const checkAuth = async () => {
-      try {
-        await fetchProfile();
-      } catch {
-        if (mounted) router.push("/login");
-      } finally {
-        if (mounted) setIsChecking(false);
-      }
-    };
-
     checkAuth();
+  }, [checkAuth]);
 
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  useEffect(() => {
+    if (hasChecked && !isAuthenticated && !isLoading) {
+      router.replace("/login"); 
+    }
+  }, [hasChecked, isAuthenticated, isLoading, router]);
 
-  if (isChecking) {
-    return (
-      <div className="fundo">
-        <div className="loading-spinner">Carregando...</div>
-      </div>
-    );
+  if (!hasChecked || isLoading) {
+    return <DashboardSkeleton />;
   }
 
   if (!isAuthenticated) {
@@ -54,6 +42,19 @@ export default function DashboardLayout({
       <Header />
       <main>{children}</main>
       <FloatingChat />
+    </div>
+  );
+}
+
+function DashboardSkeleton() {
+  return (
+    <div className="fundo skeleton">
+      <div className="skeleton-header" />
+      <div className="skeleton-main">
+        <div className="skeleton-card" />
+        <div className="skeleton-card" />
+        <div className="skeleton-card" />
+      </div>
     </div>
   );
 }
