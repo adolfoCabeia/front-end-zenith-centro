@@ -143,7 +143,7 @@ export function CreateAlunoForm() {
         <div className="inscricao-content">
           <div className="inscricao-badge">
             <GraduationCap size={14} />
-            Nova Matrícula
+            Inscrever-se
           </div>
 
           <h1 className="inscricao-title">Cadastro de Aluno</h1>
@@ -231,6 +231,14 @@ export function CreateAlunoForm() {
               {errors.turmaId && (
                 <p className="inscricao-error">{errors.turmaId.message}</p>
               )}
+            </div>
+
+            <div className="info">
+              <h3>Coordenadas bancárias para o pagamento: </h3>
+              <p>IBAN: 0006 0000 5426 8125 3017 7 (BFA)</p>
+              <p>IBAN: 0040 0000 7682 1391 1019 1 (BAI)</p>
+              <p>Express: 932 949 521</p>
+              <p>Nome: Samuel Rafael Pinheiro Tanduyan</p>
             </div>
 
             <div className="inscricao-upload-grid">

@@ -29,8 +29,8 @@ export default function DashboardLayout({
     }
   }, [hasChecked, isAuthenticated, isLoading, router]);
 
-  if (!hasChecked || isLoading) {
-    return <DashboardSkeleton />;
+  if (isLoading) {
+    return <div className="loading-container">Carregando dashboard...</div>;
   }
 
   if (!isAuthenticated) {
@@ -42,19 +42,6 @@ export default function DashboardLayout({
       <Header />
       <main>{children}</main>
       <FloatingChat />
-    </div>
-  );
-}
-
-function DashboardSkeleton() {
-  return (
-    <div className="fundo skeleton">
-      <div className="skeleton-header" />
-      <div className="skeleton-main">
-        <div className="skeleton-card" />
-        <div className="skeleton-card" />
-        <div className="skeleton-card" />
-      </div>
     </div>
   );
 }
