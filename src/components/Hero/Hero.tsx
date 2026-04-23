@@ -95,6 +95,7 @@ export const Hero = () => {
           <button 
             className="btn-secondary"
             aria-label="Ver programa completo do curso"
+            onClick={()=>router.push('/detalhes')} 
           >
             Ver programa
           </button>
