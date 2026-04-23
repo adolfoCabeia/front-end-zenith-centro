@@ -310,7 +310,7 @@ export default function CursoPage() {
           </div>
         </section>
         <section className="details-cta">
-          <button className="btn-primary btn-large btn-glow">
+          <button className="btn-primary btn-large btn-glow" onClick={()=>router.push('/inscricao')}>
             Garantir minha vaga
           </button>
           <p className="cta-hint">Clique acima para preencher o formulário de inscrição</p>
@@ -329,10 +329,10 @@ export default function CursoPage() {
               <h4>Adolfo Cabeia</h4>
               <p>Engenheiro de Software</p>
               <div className="details-links">
-                <a href="#">
+                <a href="https://www.linkedin.com/in/adolfo-cabeia-b989b6305/" target="_blank">
                   <Globe size={14} /> LinkedIn
                 </a>
-                <a href="#">
+                <a href="https://portfolio-adolfo-cabeia-junior.vercel.app/" target="_blank">
                   <Globe size={14} /> Portfólio
                 </a>
               </div>
