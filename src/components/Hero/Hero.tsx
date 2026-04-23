@@ -97,7 +97,7 @@ export const Hero = () => {
             aria-label="Ver programa completo do curso"
             onClick={()=>router.push('/detalhes')} 
           >
-            Ver programa
+            Obter mais informações
           </button>
         </div>
 

@@ -81,7 +81,7 @@ export default function CursoPage() {
 
   const requiredDocs = [
     { name: "BI Scaneado", icon: <FileText size={18} /> },
-    { name: "Comprovativo de Pagamento (50% ou 100%)", icon: <CreditCard size={18} /> },
+    { name: "Comprovativo de Pagamento", icon: <CreditCard size={18} /> },
   ];
 
   const bankAccounts = [
