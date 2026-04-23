@@ -40,7 +40,7 @@ export default function CursoPage() {
       icon: <CreditCard size={24} />,
       title: "Pagamento",
       description:
-        "Efetue o pagamento de 50% ou 100% do valor mensal do curso.",
+        "Efetue o pagamento de 100% do valor mensal do curso.",
     },
     {
       step: 2,
@@ -301,7 +301,7 @@ export default function CursoPage() {
           <div className="enrollment-payment">
             <div className="payment-badge">
               <CreditCard size={18} />
-              <span>Pagamento: 50% ou 100% do valor mensal</span>
+              <span>Pagamento: 100% do valor mensal</span>
             </div>
             <p className="payment-note">
               Após o envio, aguarde no máximo <strong>24 horas</strong> para avaliarmos o comprovativo. 
