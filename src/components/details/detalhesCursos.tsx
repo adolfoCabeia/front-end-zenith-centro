@@ -203,7 +203,7 @@ export default function CursoPage() {
             <div className="details-download-grid">
               <a
                 href="/public/materiais/Programa_Front_Zenith.pdf"
-                target="_blank"
+                download
                 className="details-download-card"
               >
                 <FileText size={20} />
@@ -216,7 +216,7 @@ export default function CursoPage() {
 
               <a
                 href="/public/materiais/Programa_Back_Zenith.pdf"
-                target="_blank"
+                download
                 className="details-download-card"
               >
                 <FileText size={20} />
