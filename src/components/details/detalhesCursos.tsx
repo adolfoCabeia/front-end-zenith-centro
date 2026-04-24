@@ -174,7 +174,8 @@ export default function CursoPage() {
             <ul className="details-schedule">
               <li>Seg - Qua - Sex: 8h - 10h</li>
               <li>10h30 - 12h30</li>
-              <li>Ter - Quin: 13h - 16h</li>
+              <li>Sábado - Domingo: 8h - 12h</li>
+              <li>Turmas Online - personalizado</li>
             </ul>
           </article>
 
@@ -185,7 +186,8 @@ export default function CursoPage() {
             <p className="details-price">35.000 Kz/mês</p>
             <ul className="details-schedule">
               <li>Seg - Qua - Sex: 14h - 16h</li>
-              <li>Ter - Quin: 7h30 - 10h</li>
+              <li>Sabado e domingo: 13h - 17h</li>
+              <li>Turmas Online - personalizado</li>
             </ul>
           </article>
           <article className="details-card details-downloads">
