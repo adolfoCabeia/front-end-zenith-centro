@@ -39,15 +39,13 @@ export default function CursoPage() {
       step: 1,
       icon: <CreditCard size={24} />,
       title: "Pagamento",
-      description:
-        "Efetue o pagamento de 100% do valor mensal do curso.",
+      description: "Efetue o pagamento de 100% do valor mensal do curso.",
     },
     {
       step: 2,
       icon: <ClipboardCheck size={24} />,
       title: "Documentos",
-      description:
-        "Prepare o seu BI scaneado e o comprovativo de pagamento.",
+      description: "Prepare o seu BI scaneado e o comprovativo de pagamento.",
     },
     {
       step: 3,
@@ -67,8 +65,7 @@ export default function CursoPage() {
       step: 5,
       icon: <Clock size={24} />,
       title: "Aguarde",
-      description:
-        "Aguarde no máximo 24h para avaliarmos o comprovativo.",
+      description: "Aguarde no máximo 24h para avaliarmos o comprovativo.",
     },
     {
       step: 6,
@@ -136,7 +133,6 @@ export default function CursoPage() {
       </nav>
 
       <main className="details-main">
-
         <section className="details-hero">
           <div className="details-badge">
             <Rocket size={16} />
@@ -159,10 +155,18 @@ export default function CursoPage() {
               <Code2 size={18} /> Tecnologias
             </h3>
             <ul className="details-list">
-              <li><CheckCircle size={14} /> HTML, CSS, JavaScript</li>
-              <li><CheckCircle size={14} /> React, TypeScript</li>
-              <li><CheckCircle size={14} /> Node.js, Prisma, PostgreSQL</li>
-              <li><CheckCircle size={14} /> Git & GitHub + Deploy</li>
+              <li>
+                <CheckCircle size={14} /> HTML, CSS, JavaScript
+              </li>
+              <li>
+                <CheckCircle size={14} /> React, TypeScript
+              </li>
+              <li>
+                <CheckCircle size={14} /> Node.js, Prisma, PostgreSQL
+              </li>
+              <li>
+                <CheckCircle size={14} /> Git & GitHub + Deploy
+              </li>
             </ul>
           </article>
 
@@ -190,6 +194,40 @@ export default function CursoPage() {
               <li>Turmas Online - personalizado</li>
             </ul>
           </article>
+
+          <article className="details-card details-program">
+            <h3>
+              <FileText size={18} /> Programa do Curso
+            </h3>
+
+            <div className="details-download-grid">
+              <a
+                href="/public/materiais/Programa_Front_Zenith.pdf"
+                target="_blank"
+                className="details-download-card"
+              >
+                <FileText size={20} />
+                <div>
+                  <strong>Programa Front-End</strong>
+                  <p>Conteúdos completos do curso</p>
+                </div>
+                <Download size={18} />
+              </a>
+
+              <a
+                href="/public/materiais/Programa_Back_Zenith.pdf"
+                target="_blank"
+                className="details-download-card"
+              >
+                <FileText size={20} />
+                <div>
+                  <strong>Programa Back-End</strong>
+                  <p>Conteúdos completos do curso</p>
+                </div>
+                <Download size={18} />
+              </a>
+            </div>
+          </article>
           <article className="details-card details-downloads">
             <h3>
               <Download size={18} /> Programas necessários
@@ -216,10 +254,18 @@ export default function CursoPage() {
               <Award size={18} /> Benefícios
             </h3>
             <ul className="details-list">
-              <li><CheckCircle size={14} /> Professores experientes</li>
-              <li><CheckCircle size={14} /> Projetos práticos</li>
-              <li><CheckCircle size={14} /> Acompanhamento 24/7</li>
-              <li><CheckCircle size={14} /> Certificado</li>
+              <li>
+                <CheckCircle size={14} /> Professores experientes
+              </li>
+              <li>
+                <CheckCircle size={14} /> Projetos práticos
+              </li>
+              <li>
+                <CheckCircle size={14} /> Acompanhamento 24/7
+              </li>
+              <li>
+                <CheckCircle size={14} /> Certificado
+              </li>
             </ul>
           </article>
           <article className="details-card">
@@ -306,16 +352,22 @@ export default function CursoPage() {
               <span>Pagamento: 100% do valor mensal</span>
             </div>
             <p className="payment-note">
-              Após o envio, aguarde no máximo <strong>24 horas</strong> para avaliarmos o comprovativo. 
-              Entraremos em contacto via <strong>WhatsApp</strong>.
+              Após o envio, aguarde no máximo <strong>24 horas</strong> para
+              avaliarmos o comprovativo. Entraremos em contacto via{" "}
+              <strong>WhatsApp</strong>.
             </p>
           </div>
         </section>
         <section className="details-cta">
-          <button className="btn-primary btn-large btn-glow" onClick={()=>router.push('/inscricao')}>
+          <button
+            className="btn-primary btn-large btn-glow"
+            onClick={() => router.push("/inscricao")}
+          >
             Garantir minha vaga
           </button>
-          <p className="cta-hint">Clique acima para preencher o formulário de inscrição</p>
+          <p className="cta-hint">
+            Clique acima para preencher o formulário de inscrição
+          </p>
         </section>
         <section className="details-instructor">
           <h2 className="details-section-title">Formador</h2>
@@ -331,10 +383,16 @@ export default function CursoPage() {
               <h4>Adolfo Cabeia</h4>
               <p>Engenheiro de Software</p>
               <div className="details-links">
-                <a href="https://www.linkedin.com/in/adolfo-cabeia-b989b6305/" target="_blank">
+                <a
+                  href="https://www.linkedin.com/in/adolfo-cabeia-b989b6305/"
+                  target="_blank"
+                >
                   <Globe size={14} /> LinkedIn
                 </a>
-                <a href="https://portfolio-adolfo-cabeia-junior.vercel.app/" target="_blank">
+                <a
+                  href="https://portfolio-adolfo-cabeia-junior.vercel.app/"
+                  target="_blank"
+                >
                   <Globe size={14} /> Portfólio
                 </a>
               </div>

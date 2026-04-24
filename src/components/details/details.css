@@ -474,6 +474,14 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
+.details-program .details-download-card {
+  justify-content: space-between;
+}
+
+.details-download-card svg:last-child {
+  opacity: 0.6;
+}
+
 .enrollment-header {
   text-align: center;
   margin-bottom: var(--space-8);
