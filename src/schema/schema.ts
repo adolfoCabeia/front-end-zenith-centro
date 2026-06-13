@@ -10,4 +10,13 @@ export const alunoSchema = z.object({
   comprovativoUrl: z.instanceof(FileList).refine((files) => files.length > 0, "Comprovativo é obrigatório"),
 });
 
+const preInscricaoSchema = z.object({
+  nome: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
+  email: z.string().email("Email inválido"),
+  telefone: z.string().min(9, "Telefone inválido"),
+  cursoId: z.string().min(1, "Selecione um curso"),
+});
+
+export type PreInscricaoFormData = z.infer<typeof preInscricaoSchema>;
+
 export type AlunoFormData = z.infer<typeof alunoSchema>;
