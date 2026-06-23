@@ -83,22 +83,22 @@ export const Hero = () => {
         </div>
 
         <div className="hero-actions">
-          <button 
+          {/*<button 
             className="btn-premium"
             aria-label="Garantir minha vaga no curso"
             onClick={()=>router.push('/reservas')}
           >
             Quero Fazer Parte da Próxima Turma
             <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
-          </button> 
-          {/* <button 
+          </button> */}
+          <button 
             className="btn-premium"
             aria-label="Garantir minha vaga no curso"
             onClick={()=>router.push('/inscricao')}
           >
             Garantir minha vaga
             <ArrowRight size={18} strokeWidth={2.5} aria-hidden="true" />
-          </button> */}
+          </button> 
 
           <button 
             className="btn-secondary"
